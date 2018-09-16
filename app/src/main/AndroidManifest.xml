@@ -18,11 +18,10 @@
         </activity>
         <service
             android:name=".MyService"
-            android:enabled="true"
-            >
+            android:enabled="true">
             <intent-filter>
                 <action android:name="com.example.msi.Myservice" />
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </service>
     </application>

@@ -3,14 +3,13 @@ package com.example.msi.testaboutservice;
 import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
-import android.os.Bundle;
-import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
 public class MyService extends Service {
 
     String data = null;
+    String a = null;
 
     @Override
     public void onCreate() {
@@ -22,9 +21,8 @@ public class MyService extends Service {
     public void onStart(Intent intent, int startId) {
         super.onStart(intent, startId);
         Log.d("tag", "onStart");
-//        Bundle bundle = intent.getBundleExtra("a");
-//        String a = bundle.getString("a");
-//        Log.d("a:",a);
+        a = intent.getStringExtra("a");
+        Log.d("a:", a);
     }
 
     @Override
@@ -35,7 +33,7 @@ public class MyService extends Service {
 
     @Nullable
     @Override
-    public IBinder onBind(Intent intent) {
+    public MyBinder onBind(Intent intent) {
         Log.d("tag", "onBind");
         return new MyBinder();
     }
@@ -50,11 +48,12 @@ public class MyService extends Service {
     @Override
     public boolean onUnbind(Intent intent) {
         Log.d("tag", "onUnbind");
+        Log.d("data", data);
         return super.onUnbind(intent);
     }
 
-    public class MyBinder extends Binder{
-        public void setData(String data){
+    public class MyBinder extends Binder {
+        public void setData(String data) {
             MyService.this.data = data;
         }
     }
