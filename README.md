@@ -6,3 +6,4 @@
     - 重复调用startService不会重新调用onCreate()但是会重新调用onStart()
     - 重复调用bindService并不会变化
 + 注意线程和service的区别
++ intentService（使用方法与service基本相同），用来处理异步请求的服务，请求会运行在单独的线程，执行完成之后改服务会自动Destory
