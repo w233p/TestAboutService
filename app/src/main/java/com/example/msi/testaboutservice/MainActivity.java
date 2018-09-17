@@ -23,9 +23,9 @@ public class MainActivity extends AppCompatActivity {
     Button button2 = null;
     Button button3 = null;
     Button button4 = null;
+    Button button5 = null;
     Intent intent = null;
     Boolean running = null;
-
 
     /*service必须显示启动*/
     @Override
@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         button2 = (Button) findViewById(R.id.button2);
         button3 = (Button) findViewById(R.id.button3);
         button4 = (Button) findViewById(R.id.button4);
+        button5 = (Button) findViewById(R.id.button5);
 
         intent = new Intent("com.example.msi.testaboutservice.MyService");
         button.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +79,14 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("running", String.valueOf(running));
             }
         });
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent.setClass(MainActivity.this,MyIntentService.class);
+                intent.putExtra("IntentServiceData","这里是intentService的数据");
+                startService(intent);
+            }
+        });
     }
 
     /*serviceName必须是完整的名字*/
@@ -104,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-
         }
     };
 
